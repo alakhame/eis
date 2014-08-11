@@ -3,22 +3,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>apleis</groupId>
+  <groupId>eishub</groupId>
   <artifactId>eispackage</artifactId>
-  <version>0.3</version>
+  <version>0.4</version>
   <packaging>pom</packaging>
+  
+  <scm>
+	<connection>scm:git:git://github.com/eishub/eis.git</connection>
+  </scm>
 
   <modules>
-    <module>apleis</module>
-    <module>eiscarriage</module>
+    <module>eis</module>
   </modules>
-
-  <scm>
-        <url>https://github.com/MartinRogalla/eis</url>
-        <connection>scm:git:https://github.com/MartinRogalla/eis.git</connection>
-        <developerConnection>scm:git:git@github.com:MartinRogalla/eis.git</developerConnection>
-        <tag>HEAD</tag>
-  </scm>
 
   <build>
     <finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName>
@@ -27,19 +23,22 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>buildnumber-maven-plugin</artifactId>
         <version>1.3</version>
+        <configuration>
+          <format>{0,date,yyyy-MM-dd}</format>
+          <items>
+            <item>timestamp</item>
+          </items>
+          <shortRevisionLength>5</shortRevisionLength>
+        </configuration>
         <executions>
           <execution>
-            <phase>validate</phase>
             <goals>
               <goal>create</goal>
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <doCheck>true</doCheck>
-          <doUpdate>true</doUpdate>
-        </configuration>
       </plugin>
+
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.4</version>
@@ -57,5 +56,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
